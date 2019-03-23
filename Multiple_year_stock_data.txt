@@ -1,0 +1,44 @@
+Sub stockvalue():
+
+Dim stockvolume As Double
+
+
+
+stockvolume = 0
+Dim ticker As Integer
+ticker = 2
+   
+Dim ws As Worksheet
+For Each ws In ActiveWorkbook.Worksheets
+
+
+
+For i = 2 To Cells(Rows.Count, "A").End(xlUp).Row
+If ws.Cells(i, 1).Value <> ws.Cells(i + 1, 1).Value Then
+   
+   
+   
+    stockvolume = stockvolume + ws.Cells(i, 7).Value
+    ws.Cells(ticker, 10).Value = stockvolume
+    ws.Cells(ticker, 9).Value = ws.Cells(i, 1).Value
+    
+
+    ticker = ticker + 1
+    stockvolume = 0
+Else
+
+    stockvolume = stockvolume + ws.Cells(i, 7).Value
+    
+
+End If
+
+
+Next i
+ticker = 2
+stockvolume = 0
+
+Next
+
+
+
+End Sub
